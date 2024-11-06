@@ -1,0 +1,20 @@
+{
+  "author": "ef2964e4d5bb43b5a8d5ddce4abf78ad@outlook.kr",
+  "dependencies": {
+    "@fortawesome/fontawesome-svg-core": "^6.5.2",
+    "@fortawesome/pro-regular-svg-icons": "^6.5.2",
+    "@fortawesome/react-native-fontawesome": "^0.3.2",
+    "axios": "^1.7.2",
+    "cheerio": "^1.0.0-rc.12",
+    "crypto-js": "^4.2.0",
+    "dotenv": "^16.4.5",
+    "path": "^0.12.7",
+    "react": "^18.2.0",
+    "react-native": "^0.74.2",
+    "react-native-svg": "^15.3.0",
+    "uuid": "^9.0.1"
+  },
+  "name": "module",
+  "type": "module",
+  "version": "0.1.399"
+}

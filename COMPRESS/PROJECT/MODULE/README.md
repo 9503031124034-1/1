@@ -1,0 +1,1 @@
+class or object: function and prototype

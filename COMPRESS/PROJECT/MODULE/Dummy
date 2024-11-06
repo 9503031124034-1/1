@@ -1,0 +1,142 @@
+export function combineSetsOfFunctions(...params) {
+  var a = [], b = params[0], c, d, e, f, g = 0, h = 0, i, j;
+  for (d of b) {
+    e = d[0][0]
+    switch (e) {
+      case "keyword function":
+        g = !0;
+        break;
+      case "open braket 1":
+        g == !0 ? (h++) : "ignore";
+        break;
+      case "close braket 1":
+        g == !0 ? (h--, h == 0) ? (g = 0, i = !0) : "ignore" : "ignore";
+        break;
+      default:
+        break;
+    }
+    g == !0 ? (f = d) : "ignore";
+    i == !0 ? (f = d, i = 0) : "ignore";
+    f ? a.push(f) : "ignore", f = undefined;
+  }
+  return a;
+}
+export function combineSetsOfObjects(...params) {
+  var a = [], b = params[0], c = params.slice(1), d, e, f, g = 0, h, i, j, k, l, m, n, o, p = {
+    "possible patterns": [
+      ["open braket 1"], ["string of wrap of double quatation", "name", "line break", "blank", "comma", "colon", "open braket 1", "open braket 2", "any"],
+    ]
+  }, q, r;
+  for (d of b) {
+    if (i && d[1][1] <= i[1][2]) {continue}
+    else {i = undefined}
+    e = d[0][0]
+    switch (e) {
+      case "open braket 1":
+        g++, g == 1 ? (l = []) : "ignore";
+        g > 0 ? (f = d) : "ignore";
+        break;
+      case "close braket 1":
+        g--;
+        g >= 0 ? (f = d) : "ignore"
+        g < 0 ? (g = 0) : "ignore"
+        g == 0 ? (m = !0) : "ignore"
+        break;
+      case "open braket 2":
+        g > 0 ? (h = c[0], i = h.findIndex((v) => v[1][1] == d[1][1]), j = h[i], f = j, k = j) : "ignore";
+        break;
+      default:
+        g > 0 ? (f = d) : "ignore"
+        break;
+    }
+    console.log(f, l);
+    q = p["possible patterns"][o[0[0]]];
+    q ? r = q.findIndex(v => v == e) : "ignore";
+    f ? l.push(f) : "ignore", o = f, f = undefined;
+    m == !0 ? (n = [], n.push(["object", "function of body"]), n = n.concat(l), a.push(), l = undefined) : "ignore";
+  }
+  return a;
+}
+export function concatSetsOfObjects(...params) {
+  var a = [], b = params[0], c, d, e, f, g, h, i, j = 0, k, l, m, o = [], p = -1;
+  for (c of b) {
+    d = c[0][0]
+    switch (d) {
+      case "open braket 1":
+        j++, g = "open", e = [], o.push(e), p++, g = undefined;
+        break;
+      case "close braket 1":
+        j--, g = "close";
+        break;
+      default:
+        break;
+    }
+    e ? (f = c, o.forEach(v => v.push(f))) : "ignore", f = undefined;
+    if (g == "close") {
+      l = "";
+      for (k of e) {
+        l = l.concat(k[0][1]);
+      }
+      m = [["object",l],[e[0][1][0],e[0][1][1],e[e.length-1][1][2]],undefined], a.push(m), g = undefined;
+      o.length > 0 ? (p--, o.pop(), e = o[p]) : e = undefined;
+    }
+  }
+  return a;
+}
+export function concatSetsOfArraies(...params) {
+  var a = [], b = params[0], c, d, e, f, g, h, i, j = 0, k, l, m, o = [], p = -1;
+  for (c of b) {
+    d = c[0][0]
+    switch (d) {
+      case "open braket 2":
+        j++, g = "open", e = [], o.push(e), p++, g = undefined;
+        break;
+      case "close braket 2":
+        j--, g = "close";
+        break;
+      default:
+        break;
+    }
+    e ? (f = c, o.forEach(v => v.push(f))) : "ignore", f = undefined;
+    if (g == "close") {
+      l = "";
+      for (k of e) {
+        l = l.concat(k[0][1]);
+      }
+      m = [["array",l],[e[0][1][0],e[0][1][1],e[e.length-1][1][2]],undefined], a.push(m), g = undefined;
+      o.length > 0 ? (p--, o.pop(), e = o[p]) : e = undefined;
+    }
+  }
+  return a;
+}
+export function combineSetsOfArray(...params) {
+  var a = [], b = params[0], c, d, e, f, g, h, i, j = 0, k;
+  for (c of b) {
+    d = c[0][0]
+    switch (d) {
+      case "open braket 2":
+        j++;
+        break;
+      case "close braket 2":
+        j--;
+        j < 0 ? (j = 0) : j == 0 ? (f = c) : "ignore"
+        break;
+      default:
+        break;
+    }
+    j > 0 ? (f = c) : "ignore", f ? a.push(f) : "ignore", f = undefined;
+  }
+  return a;
+}
+`of["result from scan text of"]["sets of arraies"] = sortByIndexOfOne(combineSetsOfArray(of["result from scan text of"].sets));
+of["result from scan text of"].arraies = sortByIndexOfOne(concatSetsOfArraies(of["result from scan text of"]["sets of arraies"]));
+of["result from scan text of"]["sets of functions"] = sortByIndexOfOne(combineSetsOfFunctions(of["result from scan text of"].sets));
+of["result from scan text of"]["sets of objects"] = sortByIndexOfOne(combineSetsOfObjects(of["result from scan text of"].sets, of["result from scan text of"].arraies));
+of["result from scan text of"].objects = sortByIndexOfOne(concatSetsOfObjects(of["result from scan text of"]["sets of objects"]))`
+
+
+"sets of arraies": null,
+"arraies": null,
+"sets of objects": null,
+"objects": null,
+"sets of functions": null,
